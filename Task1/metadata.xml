@@ -1,14 +1,1 @@
-<md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" entityID="http://www.okta.com/exk9ju4xfzPIiS7C05d7">
-<md:IDPSSODescriptor WantAuthnRequestsSigned="false" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
-<md:KeyDescriptor use="signing">
-<ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
-<ds:X509Data>
-<ds:X509Certificate>MIIDqDCCApCgAwIBAgIGAYgeNiwzMA0GCSqGSIb3DQEBCwUAMIGUMQswCQYDVQQGEwJVUzETMBEG A1UECAwKQ2FsaWZvcm5pYTEWMBQGA1UEBwwNU2FuIEZyYW5jaXNjbzENMAsGA1UECgwET2t0YTEU MBIGA1UECwwLU1NPUHJvdmlkZXIxFTATBgNVBAMMDGRldi05MTEzMzM3MzEcMBoGCSqGSIb3DQEJ ARYNaW5mb0Bva3RhLmNvbTAeFw0yMzA1MTUwNjU5NDZaFw0zMzA1MTUwNzAwNDZaMIGUMQswCQYD VQQGEwJVUzETMBEGA1UECAwKQ2FsaWZvcm5pYTEWMBQGA1UEBwwNU2FuIEZyYW5jaXNjbzENMAsG A1UECgwET2t0YTEUMBIGA1UECwwLU1NPUHJvdmlkZXIxFTATBgNVBAMMDGRldi05MTEzMzM3MzEc MBoGCSqGSIb3DQEJARYNaW5mb0Bva3RhLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoC ggEBAMYVQQtDcnjJNzp1d1KEf0KRyfIWgbbVcovVMHqvHTcvZ+iebxa7cB+UxfIJMpXWjGBLsd9v j3EFFFVWwDAKiLH4oy8zLPNi21f4meQGKHZOw0HaNw2X9lOrd2dPgosApUw3XgWdqDIyVGPna/xG FZjr3RyKk9R4AAhcDHqSCMwUX8O04scQFuslrCgPw69FCylvYyW6Z1FD/lYTJT0SgCRpD0f7ITru qkTzH6TsOuhUul8QkzWVi0KdexlF46Mh/tZEGrR4SbO4nEFqkohTE7+LQRMOOoG8XGHMLYE3S6mx D2fmizadvd30snLgPZpOHiBRhyNDXLNcCu4VvUICeT0CAwEAATANBgkqhkiG9w0BAQsFAAOCAQEA OT0MxcmzTjUbl+BPQoJl3dz/0XMHq1UdPXhK6kYqVFpSBzITu0GZkHB7JyEdm9a86JF8qX+WXryN uNbamB00i+/d3jN0lXwieqS2Mvmq0sks0pW9FyhJk+a4czFQ5Yh1rcuO275wyakQ+ST/kWZB0fmY Kqd5NQ2V4N9qyDrEcs6uhyIKd048uPXDI3pY1h5GKIQZ0N4xkrqsFwKHal7Z0kkWhDm0PSeUoW5I 84onouybzIqWA5Ler1yNqYAGKA3Tz/90gxfcypxZAT72wm1K5VsqGi9p5FqiVOagrv1Y1Q4aXhAB 9urAWnPaEq4Hqf8l5SgTnk/4F5av1VVsGB76og==</ds:X509Certificate>
-</ds:X509Data>
-</ds:KeyInfo>
-</md:KeyDescriptor>
-<md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress</md:NameIDFormat>
-<md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://dev-91133373.okta.com/app/dev-91133373_wordpress_1/exk9ju4xfzPIiS7C05d7/sso/saml"/>
-<md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://dev-91133373.okta.com/app/dev-91133373_wordpress_1/exk9ju4xfzPIiS7C05d7/sso/saml"/>
-</md:IDPSSODescriptor>
-</md:EntityDescriptor>
+
