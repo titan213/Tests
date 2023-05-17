@@ -85,7 +85,7 @@ variable "okta_domain" {
 }
 
 variable "okta_app_id" {
-    description = "provide okta domain"
+    description = "provide okta app id"
 }
 
 variable "okta_metadata_file" {
@@ -102,3 +102,23 @@ variable "okta_api_token" {
     description = "provide okta api token"
     
 }
+
+variable "wp_admin" {
+    default = "admin"
+    
+}
+
+variable "wp_admin_creds" {
+    default = "password"
+    
+}
+
+variable "wp_admin_email_add" {
+    default = "admin@hellowordpress-test.com"
+    
+}
+
+
+
+
+

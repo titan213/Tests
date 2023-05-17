@@ -1,3 +1,4 @@
+
 data "aws_ami" "ami" {
 
   most_recent = true
@@ -190,6 +191,14 @@ data "template_file" "user_data" {
     db_user_password = var.db_cred
     db_name          = "wordpressDB"
     db_RDS           = aws_db_instance.setup-rds-db.endpoint
+    wp_url           = "${var.subdomain_name}.${var.domain_name}"
+    wp_admin         = var.wp_admin
+    wp_admin_pw      = var.wp_admin_creds
+    wp_admin_email   = var.wp_admin_email_add
+    saml_sp_entity_id = okta_app_saml.setup-saml-app.entity_key
+    saml_sp_metadata_url = okta_app_saml.setup-saml-app.metadata_url
+    saml_sp_sso_url = okta_app_saml.setup-saml-app.sso_url
+    saml_sp_certificate = okta_app_saml.setup-saml-app.certificate
   }
 }
 
@@ -226,6 +235,22 @@ resource "aws_instance" "wp-webserver" {
 
   }
 
+    connection {
+    type        = "ssh"
+    user        = "ubuntu" 
+    private_key = file("${var.script_path}/${var.key_pair}-private.pem")
+    host        = self.public_ip
+  }
+
+   provisioner "remote-exec" {
+    inline = [
+        "${path.module}/saml-conf.sh ${okta_app_saml.setup-saml-app.sso_url}",    
+    ]
+
+  }
+
+
+
   depends_on = [aws_db_instance.setup-rds-db]
 }
 
@@ -243,12 +268,9 @@ resource "aws_route53_record" "wp-alias" {
   zone_id = aws_route53_zone.setup-wp-url.zone_id
   name    = var.subdomain_name
   type    = "A"
+  ttl     = 300
+  records = [aws_eip.eip.public_ip]
 
-  alias {
-    name                   = aws_eip.eip.public_ip
-    zone_id                =  data.aws_availability_zones.available.names[0] 
-    evaluate_target_health = false
-  }
 }
 
 resource "null_resource" "Wp_Install_check" {
@@ -270,51 +292,4 @@ resource "null_resource" "Wp_Install_check" {
 
   }
 }
-
-##SAML Configuration in WP with okta
-resource "null_resource" "Wp_saml_config" {
-   triggers={
-    ec2_id=aws_instance.wp-webserver.id,
-
-  }
-  connection {
-    type        = "ssh"
-    user        = "ubuntu" 
-    private_key = file("${var.script_path}/${var.key_pair}-private.pem")
-    host        = aws_eip.eip.public_ip
-  }
-
-  provisioner "file" {
-    source = "${path.module}/saml-conf.sh"
-    destination = "/tmp/saml-conf.sh"
-    
-  }
-
-  provisioner "file" {
-    source = "${path.module}/${var.okta_metadata_file}"
-    destination = "/tmp/${var.okta_metadata_file}"
-    
-  }
-
-
-  provisioner "remote-exec" {
-    inline = [
-        "chmod +x /tmp/saml-conf.sh",
-        "METADATAFILE=/tmp/${var.okta_metadata_file}",
-        "/tmp/saml-conf.sh $METADATAFILE ${var.okta_domain} ${var.okta_app_id}",    
-    ]
-
-  }
-
-  depends_on = [null_resource.Wp_Install_check]
-}
-
-
-
-
-
-
-
-
-
 
